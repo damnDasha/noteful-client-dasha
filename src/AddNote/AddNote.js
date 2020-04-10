@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import NotefulForm from '../NotefulForm';
+import NotefulForm from '../NotefulForm/NotefulForm';
 import ApiContext from '../ApiContext';
-import config from '..config';
-import '.AddNote.css';
+import config from '../config';
+import './AddNote.css';
 
 class AddNote extends Component {
     static defaultProps = {
@@ -25,14 +25,14 @@ class AddNote extends Component {
             headers: {
                 'content-type': 'application/json',
             },
-            body:JSON.stringify(Newnote),
+            body:JSON.stringify(newNote),
         })
         .then((res)=>{
             if(!res.ok) return res.json().then((e) => Promise.reject(e))
             return res.json();
         })
         .then((note) => {
-            this.context.AddNote(note);
+            this.context.addNote(note);
             this.props.history.push(`/folder/${note.folderId}`)
         })
         
@@ -50,7 +50,7 @@ class AddNote extends Component {
           <section className='AddNote'>
               <h2>Add note</h2>
         <NotefulForm onSubmit={this.handleSubmit}>
-          <form>
+          <section className='form'>
               <label htmlFor='note-name'>Note Name</label>
           <input
             required type="text"
@@ -64,7 +64,7 @@ class AddNote extends Component {
           name='content'
           id='note-content'/>
           <label htmlFor='folder-select'>Folder Select</label>
-          <select required id='note-folder-select' name='folder-select'>
+          <select required id='note-folder-select' name='note-folder-id'>
               <option value={null}>...</option>
               {folders.map((folder)=>
             (<option key={folder.id} value={folder.id}>
@@ -76,7 +76,7 @@ class AddNote extends Component {
       <div className='button'>
           <button type='submit'>Add Note</button>
       </div>
-          </form>
+          </section>
           </NotefulForm>
         </section>
       );

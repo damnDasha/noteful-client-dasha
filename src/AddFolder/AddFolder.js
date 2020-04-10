@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NotefulForm from '../NotefulForm'
+import NotefulForm from '../NotefulForm/NotefulForm'
 import ApiContext from '../ApiContext';
 import config from '../config';
 import './AddFolder.css'
@@ -46,19 +46,19 @@ class AddFolder extends Component {
         <section className='AddFolder'>
             <h2>Add folder</h2>
       <NotefulForm onSubmit={this.handleSubmit}>
-        <form>
+        
             <label htmlFor='folder-name'>Folder Name</label>
         <input
           required type="text"
-          name="title"
-          id="folder_name"
+          name="folder-name"
+          id="folder-name"
           
         />
 
     <div className='button'>
         <button type='submit'>Add Folder</button>
     </div>
-        </form>
+        
         </NotefulForm>
       </section>
     );
