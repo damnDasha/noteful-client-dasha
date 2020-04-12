@@ -10,6 +10,7 @@ import config from "../config";
 import "./App.css";
 import AddFolder from "../AddFolder/AddFolder";
 import AddNote from '../AddNote/AddNote'
+import ErrorBoundary from '../ErrorBoundary'
 
 class App extends Component {
   state = {
@@ -70,14 +71,14 @@ class App extends Component {
 
   renderMainRoutes() {
     return (
-      <>
+      <ErrorBoundary>
         {["/", "/folder/:folderId"].map((path) => (
           <Route exact key={path} path={path} component={NoteListMain} />
         ))}
         <Route path='/note/:noteId' component={NotePageMain} />
         <Route path='/add-folder' component={AddFolder} />
         <Route path='/add-note' component={AddNote} />
-      </>
+      </ErrorBoundary>
     );
   }
 
