@@ -13,13 +13,11 @@ export default class ErrorBoundary extends Component {
     }
   
     componentDidCatch(error, errorInfo) {
-      // You can also log the error to an error reporting service
       //logErrorToMyService(error, errorInfo);
     }
   
     render() {
       if (this.state.hasError) {
-        // You can render any custom fallback UI
         return <h1>Something went wrong.</h1>;
       }
   
